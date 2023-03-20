@@ -71,6 +71,7 @@ $danger: #f93920;
   }
 }
 
+// 尺寸
 .btn_large {
   padding: 10px 16px;
 }
@@ -90,4 +91,10 @@ $danger: #f93920;
   &:hover {
     background-color: rgba(46, 50, 56, 0.05);
   }
+}
+
+// 块状按钮
+.block {
+  width: 100%;
+  text-align: center;
 }

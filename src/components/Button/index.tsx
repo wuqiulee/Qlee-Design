@@ -1,4 +1,4 @@
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react';
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
 import classnames from 'classnames';
 import Styles from './index.module.scss';
 
@@ -11,7 +11,10 @@ interface ButtonProps {
   theme?: ThemeType;
   size?: SizeType;
   disabled?: boolean;
+  block?: boolean;
   children: ReactNode;
+  style?: CSSProperties;
+  onClick?: (event: MouseEvent) => void;
 }
 type NativeBtnProps = ButtonProps & ButtonHTMLAttributes<HTMLElement>;
 type AnchorBtnProps = ButtonProps & AnchorHTMLAttributes<HTMLElement>;
@@ -24,7 +27,10 @@ const Button: React.FC<IProps> = (props) => {
     theme = 'light',
     size = 'default',
     disabled = false,
+    block = false,
     children,
+    style,
+    onClick,
     ...restProps
   } = props;
 
@@ -34,10 +40,11 @@ const Button: React.FC<IProps> = (props) => {
     [Styles.empty]: theme === 'borderless',
     [Styles[`btn_${size}`]]: size && size !== 'default',
     [Styles.disabled]: disabled,
+    [Styles.block]: block,
   });
 
   return (
-    <div className={classes} {...restProps}>
+    <div className={classes} style={style} onClick={onClick} {...restProps}>
       {children}
     </div>
   );

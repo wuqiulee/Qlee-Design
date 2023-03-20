@@ -4,7 +4,7 @@ import Button from './components/Button';
 function App() {
   return (
     <div style={{ margin: 50 }}>
-      <Button btnType="primary" theme="light">
+      <Button btnType="primary" theme="light" style={{ color: 'purple' }} block>
         hello
       </Button>
       <Button disabled onClick={() => alert(1)}>
