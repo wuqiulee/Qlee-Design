@@ -1,0 +1,79 @@
+$primary: #0064fa;
+$secondary: #0095ee;
+$tertiary: #1c1f23cc;
+$warning: #fc8800;
+$danger: #f93920;
+
+@mixin button_style($background_color, $color, $background_color_hover) {
+  color: $color;
+  background-color: $background_color;
+  &:hover {
+    background-color: $background_color_hover;
+  }
+}
+@mixin button_size($background_color, $color, $background_color_hover) {
+  color: $color;
+  background-color: $background_color;
+  &:hover {
+    background-color: $background_color_hover;
+  }
+}
+
+.base {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+// 浅色背景
+.btn_primary {
+  @include button_style(rgba(46, 50, 56, 0.05), $primary, rgba(46, 50, 56, 0.09));
+}
+.btn_secondary {
+  @include button_style(rgba(46, 50, 56, 0.05), $secondary, rgba(46, 50, 56, 0.09));
+}
+.btn_tertiary {
+  @include button_style(rgba(46, 50, 56, 0.05), $tertiary, rgba(46, 50, 56, 0.09));
+}
+.btn_warning {
+  @include button_style(rgba(46, 50, 56, 0.05), $warning, rgba(46, 50, 56, 0.09));
+}
+.btn_danger {
+  @include button_style(rgba(46, 50, 56, 0.05), $danger, rgba(46, 50, 56, 0.09));
+}
+
+// 深色背景
+.solid_primary {
+  @include button_style($primary, #fff, rgba(0, 98, 214, 1));
+}
+.solid_secondary {
+  @include button_style($secondary, #fff, rgba(0, 123, 202, 1));
+}
+.solid_tertiary {
+  @include button_style($tertiary, #fff, rgba(85, 91, 97, 1));
+}
+.solid_warning {
+  @include button_style($warning, #fff, rgba(210, 103, 0, 1));
+}
+.solid_danger {
+  @include button_style($danger, #fff, rgba(213, 37, 21, 1));
+}
+
+// 无背景
+.empty {
+  background-color: transparent;
+  &:hover {
+    background-color: rgba(46, 50, 56, 0.05);
+  }
+}
+
+.btn_large {
+  padding: 10px 16px;
+}
+.btn_small {
+  padding: 2px 12px;
+}
