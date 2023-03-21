@@ -40,7 +40,7 @@ function App() {
       <Banner type="info" description="A pre-released version is available." />
       <Banner type="danger" description="A pre-released version is available." />
       <Banner type="success" description="A pre-released version is available." />
-      <Banner type="warning" description="A pre-released version is available." />
+      <Banner type="warning" description="A pre-released version is available." fullMode />
     </div>
   );
 }

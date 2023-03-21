@@ -11,15 +11,17 @@ interface BannerProps extends DOMAttributes<HTMLDivElement> {
   type?: BannerType;
   description?: string;
   className?: string;
+  fullMode?: boolean;
 }
 
 const Banner: React.FC<BannerProps> = (props) => {
-  const { type, description, className } = props;
+  const { type, description, fullMode, className } = props;
 
   const bannerRef = useRef(null);
 
   const classes = classnames(Styles.banner_wrap, className, {
     [Styles[`banner_${type}`]]: type,
+    [Styles.fullMode]: fullMode,
   });
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -53,6 +55,7 @@ Banner.defaultProps = {
   type: 'info',
   description: '',
   className: '',
+  fullMode: false,
 };
 
 export default Banner;
