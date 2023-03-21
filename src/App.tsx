@@ -1,9 +1,10 @@
 import React from 'react';
 import Button from './components/Button';
+import Banner from './components/Banner';
 
 function App() {
   return (
-    <div style={{ margin: 50 }}>
+    /*  <div style={{ margin: 50 }}>
       <Button btnType="primary" theme="light" style={{ color: 'purple' }} block>
         hello
       </Button>
@@ -33,6 +34,13 @@ function App() {
       <Button btnType="warning" theme="solid" disabled>
         hello
       </Button>
+    </div> */
+
+    <div>
+      <Banner type="info" description="A pre-released version is available." />
+      <Banner type="danger" description="A pre-released version is available." />
+      <Banner type="success" description="A pre-released version is available." />
+      <Banner type="warning" description="A pre-released version is available." />
     </div>
   );
 }

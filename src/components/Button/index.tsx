@@ -7,7 +7,7 @@ type ThemeType = 'light' | 'solid' | 'borderless';
 type SizeType = 'large' | 'default' | 'small';
 interface ButtonProps {
   btnType?: BtnType;
-  className?: 'string';
+  className?: string;
   theme?: ThemeType;
   size?: SizeType;
   disabled?: boolean;
@@ -18,7 +18,7 @@ interface ButtonProps {
 }
 type NativeBtnProps = ButtonProps & ButtonHTMLAttributes<HTMLElement>;
 type AnchorBtnProps = ButtonProps & AnchorHTMLAttributes<HTMLElement>;
-export type IProps = Partial<NativeBtnProps & AnchorBtnProps>;
+type IProps = Partial<NativeBtnProps & AnchorBtnProps>;
 
 const Button: React.FC<IProps> = (props) => {
   const {
