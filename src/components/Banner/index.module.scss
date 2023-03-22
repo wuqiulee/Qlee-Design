@@ -37,3 +37,16 @@
 .fullMode {
   width: 640px;
 }
+
+.border_info {
+  border: 1px solid rgba(152, 205, 253, 1);
+}
+.border_warning {
+  border: 1px solid rgba(254, 217, 152, 1);
+}
+.border_danger {
+  border: 1px solid rgba(253, 183, 165, 1);
+}
+.border_success {
+  border: 1px solid rgba(164, 224, 167, 1);
+}

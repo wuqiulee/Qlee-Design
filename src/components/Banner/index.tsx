@@ -1,4 +1,4 @@
-import React, { useRef, DOMAttributes, MouseEvent, ReactNode, MutableRefObject } from 'react';
+import React, { useRef, DOMAttributes, MouseEvent, MutableRefObject, ReactNode } from 'react';
 import classnames from 'classnames';
 import Styles from './index.module.scss';
 
@@ -9,19 +9,21 @@ type BannerRefType = MutableRefObject<null> | CurrentType;
 type BannerType = 'info' | 'warning' | 'danger' | 'success';
 interface BannerProps extends DOMAttributes<HTMLDivElement> {
   type?: BannerType;
-  description?: string;
+  description?: ReactNode;
   className?: string;
   fullMode?: boolean;
+  bordered?: boolean;
 }
 
 const Banner: React.FC<BannerProps> = (props) => {
-  const { type, description, fullMode, className } = props;
+  const { type, description, fullMode, bordered, className } = props;
 
   const bannerRef = useRef(null);
 
   const classes = classnames(Styles.banner_wrap, className, {
     [Styles[`banner_${type}`]]: type,
     [Styles.fullMode]: fullMode,
+    [Styles[`border_${type}`]]: bordered && fullMode,
   });
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -56,6 +58,7 @@ Banner.defaultProps = {
   description: '',
   className: '',
   fullMode: false,
+  bordered: false,
 };
 
 export default Banner;

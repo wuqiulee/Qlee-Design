@@ -36,11 +36,11 @@ function App() {
       </Button>
     </div> */
 
-    <div>
-      <Banner type="info" description="A pre-released version is available." />
+    <div style={{ margin: 50 }}>
+      <Banner type="info" description={<div style={{ color: 'red' }}>banner</div>} bordered />
       <Banner type="danger" description="A pre-released version is available." />
       <Banner type="success" description="A pre-released version is available." />
-      <Banner type="warning" description="A pre-released version is available." fullMode />
+      <Banner type="warning" description="A pre-released version is available." fullMode bordered />
     </div>
   );
 }
