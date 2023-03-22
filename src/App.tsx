@@ -37,10 +37,24 @@ function App() {
     </div> */
 
     <div style={{ margin: 50 }}>
-      <Banner type="info" description={<div style={{ color: 'red' }}>banner</div>} bordered />
+      <Banner
+        type="info"
+        description={<div style={{ color: 'red' }}>banner</div>}
+        title={<div>"adad"</div>}
+      />
       <Banner type="danger" description="A pre-released version is available." />
       <Banner type="success" description="A pre-released version is available." />
-      <Banner type="warning" description="A pre-released version is available." fullMode bordered />
+      <Banner
+        type="warning"
+        description="A pre-released version is available."
+        fullMode
+        bordered
+        title="我是标题"
+        style={{ color: 'blue' }}
+        onClick={() => {
+          alert(22);
+        }}
+      />
     </div>
   );
 }

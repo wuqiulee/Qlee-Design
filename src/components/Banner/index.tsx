@@ -1,4 +1,11 @@
-import React, { useRef, DOMAttributes, MouseEvent, MutableRefObject, ReactNode } from 'react';
+import React, {
+  useRef,
+  DOMAttributes,
+  MouseEvent,
+  MutableRefObject,
+  ReactNode,
+  CSSProperties,
+} from 'react';
 import classnames from 'classnames';
 import Styles from './index.module.scss';
 
@@ -13,10 +20,12 @@ interface BannerProps extends DOMAttributes<HTMLDivElement> {
   className?: string;
   fullMode?: boolean;
   bordered?: boolean;
+  title?: ReactNode;
+  style?: CSSProperties;
 }
 
 const Banner: React.FC<BannerProps> = (props) => {
-  const { type, description, fullMode, bordered, className } = props;
+  const { type, description, fullMode, bordered, title, className, ...restProps } = props;
 
   const bannerRef = useRef(null);
 
@@ -31,8 +40,11 @@ const Banner: React.FC<BannerProps> = (props) => {
   };
 
   return (
-    <div className={classes} ref={bannerRef}>
-      <div className={Styles.banner_content}>{description}</div>
+    <div className={classes} ref={bannerRef} {...restProps}>
+      <div className={Styles.banner_content}>
+        <div className={Styles.banner_title}>{title}</div>
+        <div>{description}</div>
+      </div>
       <div className={Styles.banner_close_icon} onClick={handleClick}>
         <svg
           viewBox="0 0 24 24"
@@ -59,6 +71,8 @@ Banner.defaultProps = {
   className: '',
   fullMode: false,
   bordered: false,
+  title: '',
+  style: {},
 };
 
 export default Banner;
