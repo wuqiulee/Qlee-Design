@@ -22,10 +22,11 @@ interface BannerProps extends DOMAttributes<HTMLDivElement> {
   bordered?: boolean;
   title?: ReactNode;
   style?: CSSProperties;
+  onClose?: (event: MouseEvent) => void;
 }
 
 const Banner: React.FC<BannerProps> = (props) => {
-  const { type, description, fullMode, bordered, title, className, ...restProps } = props;
+  const { type, description, fullMode, bordered, title, className, onClose, ...restProps } = props;
 
   const bannerRef = useRef(null);
 
@@ -37,6 +38,7 @@ const Banner: React.FC<BannerProps> = (props) => {
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     (bannerRef as BannerRefType)!.current!.style.display = 'none';
+    onClose && onClose(e);
   };
 
   return (
@@ -73,6 +75,7 @@ Banner.defaultProps = {
   bordered: false,
   title: '',
   style: {},
+  onClose: undefined,
 };
 
 export default Banner;

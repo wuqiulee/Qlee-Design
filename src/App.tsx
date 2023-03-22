@@ -51,7 +51,8 @@ function App() {
         bordered
         title="我是标题"
         style={{ color: 'blue' }}
-        onClick={() => {
+        onClick={(e) => {
+          console.log(e);
           alert(22);
         }}
       />
