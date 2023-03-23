@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './components/Button';
 import Banner from './components/Banner';
+import { TabPane, Tabs } from './components/Tabs';
 
 function App() {
   return (
@@ -36,26 +37,32 @@ function App() {
       </Button>
     </div> */
 
-    <div style={{ margin: 50 }}>
-      <Banner
-        type="info"
-        description={<div style={{ color: 'red' }}>banner</div>}
-        title={<div>"adad"</div>}
-      />
-      <Banner type="danger" description="A pre-released version is available." />
-      <Banner type="success" description="A pre-released version is available." />
-      <Banner
-        type="warning"
-        description="A pre-released version is available."
-        fullMode
-        bordered
-        title="我是标题"
-        style={{ color: 'blue' }}
-        onClick={(e) => {
-          console.log(e);
-          alert(22);
-        }}
-      />
+    // <div style={{ margin: 50 }}>
+    //   <Banner
+    //     type="info"
+    //     description={<div style={{ color: 'red' }}>banner</div>}
+    //     title={<div>"adad"</div>}
+    //   />
+    //   <Banner type="danger" description="A pre-released version is available." />
+    //   <Banner type="success" description="A pre-released version is available." />
+    //   <Banner
+    //     type="warning"
+    //     description="A pre-released version is available."
+    //     fullMode
+    //     bordered
+    //     title="我是标题"
+    //     style={{ color: 'blue' }}
+    //     onClick={(e) => {
+    //       console.log(e);
+    //       alert(22);
+    //     }}
+    //   />
+    // </div>
+    <div>
+      <Tabs>
+        <TabPane tab="tab1" />
+        <TabPane tab="tab2" />
+      </Tabs>
     </div>
   );
 }

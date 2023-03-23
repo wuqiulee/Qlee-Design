@@ -1,0 +1,14 @@
+.base {
+  color: rgba(28, 31, 35, 0.62);
+}
+
+.tabs_wrap {
+  display: flex;
+  align-items: center;
+  > li {
+    margin-right: 30px;
+  }
+  & > li:last-child {
+    margin-right: 0;
+  }
+}
