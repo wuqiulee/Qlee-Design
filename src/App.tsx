@@ -58,10 +58,14 @@ function App() {
     //     }}
     //   />
     // </div>
-    <div>
+    <div style={{ margin: 30 }}>
       <Tabs>
-        <TabPane tab="tab1" />
-        <TabPane tab="tab2" />
+        <TabPane tab="tab1" itemKey="1">
+          <div>child1</div>
+        </TabPane>
+        <TabPane tab="tab2" itemKey="2">
+          tab2
+        </TabPane>
       </Tabs>
     </div>
   );

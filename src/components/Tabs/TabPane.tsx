@@ -1,17 +1,24 @@
-import React, { ReactNode } from 'react';
+import React, { useContext, ReactNode } from 'react';
+import { TabsContext } from './index';
 
-interface TabPaneProps {
+export interface TabPaneProps {
   tab: ReactNode;
-  itemKey?: string;
+  itemKey: string;
+  children?: ReactNode;
 }
 
 const TabPane: React.FC<TabPaneProps> = (props) => {
-  const { tab, itemKey } = props;
-  return <li>{tab}</li>;
+  const { tab, itemKey, children } = props;
+  const { activeKey, onChange } = useContext(TabsContext);
+  const handleClick = () => {
+    onChange && onChange(itemKey);
+  };
+  return <li onClick={handleClick}>{tab}</li>;
 };
 
 TabPane.defaultProps = {
-  itemKey: '1',
+  children: '',
 };
+TabPane.displayName = 'TabPane';
 
 export default TabPane;
