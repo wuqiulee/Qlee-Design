@@ -13,6 +13,7 @@ interface TabsProps {
   style?: CSSProperties;
   defaultActiveKey?: string; // 初始激活的itemKey
   onChange?: (activeKey: string) => void; // 切换tab触发的函数
+  tabBarExtraContent?: ReactNode;
 }
 interface ContextType {
   activeKey: string;
@@ -24,7 +25,16 @@ export const TabsContext = createContext<ContextType>({
 });
 
 const Tabs: React.FC<TabsProps> = (props) => {
-  const { type, children, mode, className, style, defaultActiveKey = '', onChange } = props;
+  const {
+    type,
+    children,
+    mode,
+    className,
+    style,
+    defaultActiveKey = '',
+    onChange,
+    tabBarExtraContent, // 标签栏内容扩展
+  } = props;
   // 如果没传defaultActiveKey则取第一个TabPane的itemKey
   const [currentActive, setActive] = useState<string>(
     defaultActiveKey || children[0]?.props?.itemKey
@@ -54,13 +64,13 @@ const Tabs: React.FC<TabsProps> = (props) => {
       const childElement = child as React.FunctionComponentElement<TabPaneProps>;
       const { displayName } = childElement.type;
       const { disabled, itemKey } = childElement.props;
-      // Tabs的children必须是Tabpane，否则抛出error
+      // Tabs的children必须是TabPane，否则抛出error
       if (displayName !== 'TabPane') {
-        throw new Error('children must be Tabpane component');
+        throw new Error('children must be TabPane component');
       }
-      // defaultActiveKey不能是绑定了disabled属性的Tabpane
+      // defaultActiveKey不能是绑定了disabled属性的TabPane
       if (disabled && itemKey === defaultActiveKey) {
-        throw new Error('defaultActiveKey Cannot be a disabled Tabpane component');
+        throw new Error('defaultActiveKey Cannot be a disabled TabPane component');
       }
       return React.cloneElement(childElement, {
         itemKey: child?.props?.itemKey,
@@ -80,7 +90,10 @@ const Tabs: React.FC<TabsProps> = (props) => {
   return (
     <TabsContext.Provider value={contextValue}>
       <div style={wrapStyle}>
-        <ul className={classes}>{renderTabPane()}</ul>
+        <ul className={classes}>
+          {renderTabPane()}
+          {tabBarExtraContent && <div className={Styles.tab_bar_extra}>{tabBarExtraContent}</div>}
+        </ul>
         <div className={Styles.content_wrap}>{renderContent()}</div>
       </div>
     </TabsContext.Provider>
@@ -95,6 +108,7 @@ Tabs.defaultProps = {
   onChange: undefined,
   style: {},
   defaultActiveKey: '',
+  tabBarExtraContent: null,
 };
 
 export { TabPane, Tabs };
