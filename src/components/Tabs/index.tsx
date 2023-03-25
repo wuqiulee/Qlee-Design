@@ -1,4 +1,4 @@
-import React, { useState, createContext, CSSProperties, ReactNode } from 'react';
+import React, { useState, createContext, CSSProperties, ReactNode, Children } from 'react';
 import classnames from 'classnames';
 import TabPane, { TabPaneProps } from './TabPane';
 import Styles from './index.module.scss';
@@ -13,11 +13,13 @@ interface TabsProps {
   style?: CSSProperties;
   defaultActiveKey?: string; // 初始激活的itemKey
   onChange?: (activeKey: string) => void; // 切换tab触发的函数
-  tabBarExtraContent?: ReactNode;
+  tabBarExtraContent?: ReactNode; // 标签栏内容扩展
+  onTabClose?: (itemKey: string) => void; // 关闭tab页触发的回调
 }
 interface ContextType {
   activeKey: string;
   onChange?: (activeKey: string) => void;
+  onTabClose?: (itemKey: string) => void;
 }
 
 export const TabsContext = createContext<ContextType>({
@@ -33,12 +35,14 @@ const Tabs: React.FC<TabsProps> = (props) => {
     style,
     defaultActiveKey = '',
     onChange,
-    tabBarExtraContent, // 标签栏内容扩展
+    onTabClose,
+    tabBarExtraContent,
   } = props;
   // 如果没传defaultActiveKey则取第一个TabPane的itemKey
   const [currentActive, setActive] = useState<string>(
     defaultActiveKey || children[0]?.props?.itemKey
   );
+  const [refresh, setRefresh] = useState<any>([0, '']);
 
   const classes = classnames(Styles.base, className, {
     [Styles[`tabs_${type}`]]: mode === 'horizontal',
@@ -53,9 +57,16 @@ const Tabs: React.FC<TabsProps> = (props) => {
     onChange && onChange(key);
   };
 
+  // 关闭 tab 页触发的回调
+  const handleClose = (itemKey: string) => {
+    setRefresh([refresh[0] + 1, itemKey]);
+    onTabClose && onTabClose(itemKey);
+  };
+
   const contextValue: ContextType = {
     activeKey: currentActive,
     onChange: handleChange,
+    onTabClose: handleClose,
   };
 
   // 渲染TabPane组件
@@ -63,7 +74,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
     return React.Children.map(children, (child) => {
       const childElement = child as React.FunctionComponentElement<TabPaneProps>;
       const { displayName } = childElement.type;
-      const { disabled, itemKey } = childElement.props;
+      const { disabled, itemKey, closable } = childElement.props;
       // Tabs的children必须是TabPane，否则抛出error
       if (displayName !== 'TabPane') {
         throw new Error('children must be TabPane component');
@@ -71,6 +82,12 @@ const Tabs: React.FC<TabsProps> = (props) => {
       // defaultActiveKey不能是绑定了disabled属性的TabPane
       if (disabled && itemKey === defaultActiveKey) {
         throw new Error('defaultActiveKey Cannot be a disabled TabPane component');
+      }
+      // TabPane组件不能同时存在disabled和closable
+      if (disabled && closable) {
+        throw new Error(
+          'Different TabPane components is props exist simultaneously disabled and closable'
+        );
       }
       return React.cloneElement(childElement, {
         itemKey: child?.props?.itemKey,
@@ -81,7 +98,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
   // 渲染Tabpane组件的children
   const renderContent = () => {
     return React.Children.map(children, (child) => {
-      if (child?.props?.itemKey === currentActive) {
+      if (child?.props?.itemKey === currentActive && refresh[1] !== currentActive) {
         return child.props.children;
       }
       return null;
@@ -109,6 +126,7 @@ Tabs.defaultProps = {
   style: {},
   defaultActiveKey: '',
   tabBarExtraContent: null,
+  onTabClose: undefined,
 };
 
 export { TabPane, Tabs };

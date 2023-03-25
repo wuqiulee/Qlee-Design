@@ -62,16 +62,17 @@ function App() {
       <Tabs
         defaultActiveKey="2"
         type="button"
-        mode="horizontal"
-        tabBarExtraContent={<Button>222</Button>}
+        mode="vertical"
+        tabBarExtraContent={<Button>按钮</Button>}
+        onTabClose={(key) => alert(key)}
       >
         <TabPane tab="tab1" itemKey="1" disabled>
           <div style={{ color: 'red' }}>child1</div>
         </TabPane>
-        <TabPane tab="tab2" itemKey="2">
+        <TabPane tab="tab2" itemKey="2" closable>
           child2
         </TabPane>
-        <TabPane tab="tab3" itemKey="3">
+        <TabPane tab="tab3" itemKey="3" closable>
           child3
         </TabPane>
       </Tabs>
