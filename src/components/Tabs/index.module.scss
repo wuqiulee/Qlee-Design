@@ -1,23 +1,8 @@
-.base {
-  color: rgba(28, 31, 35, 0.62);
-}
-
-// .tabs_wrap {
-//   display: flex;
-//   align-items: center;
-//   > .tabPane {
-//     margin-right: 30px;
-//   }
-//   & > .tabPane:last-child {
-//     margin-right: 0;
-//   }
-// }
-
 .tabs_line {
   display: flex;
   align-items: center;
-  color: rgba(28, 31, 35, 0.62);
   border-bottom: 1px solid rgba(28, 31, 35, 0.22);
+  color: rgba(28, 31, 35, 0.62);
   > .tabPane {
     padding: 15px 0;
     margin-right: 30px;
@@ -36,9 +21,152 @@
     color: #000;
     font-weight: bold;
     border-bottom: 2px solid blue;
+    cursor: default;
+    &:hover {
+      border-bottom: 2px solid blue;
+    }
+  }
+}
+
+.tabs_button {
+  display: flex;
+  align-items: center;
+  color: rgba(28, 31, 35, 0.62);
+  > .tabPane {
+    margin-right: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    &:hover {
+      color: #000;
+      background-color: rgba(165, 170, 178, 0.22);
+    }
+  }
+  & > .tabPane:last-child {
+    margin-right: 0;
+  }
+  .active {
+    color: blue;
+    font-weight: bold;
+    background-color: rgb(224, 241, 250);
+    &:hover {
+      color: blue;
+      background-color: rgb(224, 241, 250);
+      cursor: default;
+    }
+  }
+}
+
+.tabs_card {
+  display: flex;
+  align-content: center;
+  color: rgba(28, 31, 35, 0.62);
+  border-bottom: 1px solid rgba(165, 170, 178, 0.22);
+  > .tabPane {
+    margin-right: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-bottom: -1px;
+    &:hover {
+      color: #000;
+      background-color: rgba(165, 170, 178, 0.22);
+    }
+  }
+  & > .tabPane:last-child {
+    margin-right: 0;
+  }
+  .active {
+    color: #000;
+    font-weight: bold;
+    border: 1px solid rgba(165, 170, 178, 0.22);
+    border-bottom: 1px solid #fff;
+    &:hover {
+      color: #000;
+      cursor: default;
+    }
+  }
+}
+
+.vertical_line {
+  display: inline-block;
+  color: rgba(28, 31, 35, 0.62);
+  margin-right: 20px;
+  border-right: 1px solid rgba(165, 170, 178, 0.22);
+  > .tabPane {
+    padding: 12px;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    &:hover {
+      color: #000;
+      background-color: rgba(165, 170, 178, 0.22);
+    }
+  }
+  .active {
+    background-color: rgb(224, 241, 250);
+    color: #000;
+    font-weight: bold;
+    cursor: default;
+    border-left: 2px solid blue;
+    &:hover {
+      background-color: rgb(224, 241, 250);
+    }
+  }
+}
+
+.vertical_card {
+  display: inline-block;
+  color: rgba(28, 31, 35, 0.62);
+  margin-right: 20px;
+  border-right: 1px solid rgba(165, 170, 178, 0.22);
+  > .tabPane {
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-right: -1px;
+    margin-bottom: 8px;
+    &:hover {
+      color: #000;
+      background-color: rgba(165, 170, 178, 0.22);
+    }
+  }
+  & > .tabPane:last-child {
+    margin-bottom: 0;
+  }
+  .active {
+    color: #000;
+    font-weight: bold;
+    cursor: default;
+    border: 1px solid rgba(165, 170, 178, 0.22);
+    border-right: 1px solid #fff;
+  }
+}
+
+.vertical_button {
+  display: inline-block;
+  color: rgba(28, 31, 35, 0.62);
+  margin-right: 20px;
+  > .tabPane {
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    &:hover {
+      color: #000;
+      background-color: rgba(165, 170, 178, 0.22);
+    }
+  }
+  & > .tabPane:last-child {
+    margin-bottom: 0;
+  }
+  .active {
+    color: blue;
+    font-weight: bold;
+    cursor: default;
+    background-color: rgb(224, 241, 250);
+    &:hover {
+      color: blue;
+      background-color: rgb(224, 241, 250);
+    }
   }
 }
 
 .content_wrap {
-  padding: 20px 0;
+  padding: 12px 0;
 }

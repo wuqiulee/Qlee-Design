@@ -31,8 +31,11 @@ const Tabs: React.FC<TabsProps> = (props) => {
   );
 
   const classes = classnames(Styles.base, className, {
-    [Styles[`tabs_${type}`]]: type,
+    [Styles[`tabs_${type}`]]: mode === 'horizontal',
+    [Styles[`vertical_${type}`]]: mode === 'vertical',
   });
+
+  const wrapStyle = mode === 'vertical' ? { ...style, display: 'flex' } : style;
 
   // 切换 tab 页时的回调函数
   const handleChange = (key: string) => {
@@ -71,7 +74,7 @@ const Tabs: React.FC<TabsProps> = (props) => {
   };
   return (
     <TabsContext.Provider value={contextValue}>
-      <div style={style}>
+      <div style={wrapStyle}>
         <ul className={classes}>{renderTabPane()}</ul>
         <div className={Styles.content_wrap}>{renderContent()}</div>
       </div>

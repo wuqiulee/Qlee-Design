@@ -59,7 +59,7 @@ function App() {
     //   />
     // </div>
     <div style={{ margin: 30 }}>
-      <Tabs defaultActiveKey="2">
+      <Tabs defaultActiveKey="2" type="button" mode="vertical">
         <TabPane tab="tab1" itemKey="1">
           <div style={{ color: 'red' }}>child1</div>
         </TabPane>

@@ -14,7 +14,6 @@ export interface TabPaneProps {
 const TabPane: React.FC<TabPaneProps> = (props) => {
   const { tab, itemKey, children, className, style } = props;
   const { activeKey, onChange } = useContext(TabsContext);
-  console.log(activeKey, itemKey);
 
   const classes = classnames(Styles.tabPane, className, {
     [Styles.active]: activeKey === itemKey,
