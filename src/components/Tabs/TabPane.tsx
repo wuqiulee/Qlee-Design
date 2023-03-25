@@ -9,18 +9,22 @@ export interface TabPaneProps {
   children?: ReactNode;
   className?: string;
   style?: CSSProperties;
+  disabled?: boolean;
 }
 
 const TabPane: React.FC<TabPaneProps> = (props) => {
-  const { tab, itemKey, children, className, style } = props;
+  const { tab, itemKey, children, className, style, disabled } = props;
   const { activeKey, onChange } = useContext(TabsContext);
 
   const classes = classnames(Styles.tabPane, className, {
     [Styles.active]: activeKey === itemKey,
+    [Styles.disabled]: disabled,
   });
 
   const handleClick = () => {
-    onChange && onChange(itemKey);
+    if (!disabled && onChange) {
+      onChange(itemKey);
+    }
   };
   return (
     <li className={classes} style={style} onClick={handleClick}>
@@ -33,6 +37,7 @@ TabPane.defaultProps = {
   children: '',
   className: '',
   style: {},
+  disabled: false,
 };
 TabPane.displayName = 'TabPane';
 

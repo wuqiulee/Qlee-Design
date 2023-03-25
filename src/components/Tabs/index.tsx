@@ -53,9 +53,14 @@ const Tabs: React.FC<TabsProps> = (props) => {
     return React.Children.map(children, (child) => {
       const childElement = child as React.FunctionComponentElement<TabPaneProps>;
       const { displayName } = childElement.type;
+      const { disabled, itemKey } = childElement.props;
       // Tabs的children必须是Tabpane，否则抛出error
       if (displayName !== 'TabPane') {
         throw new Error('children must be Tabpane component');
+      }
+      // defaultActiveKey不能是绑定了disabled属性的Tabpane
+      if (disabled && itemKey === defaultActiveKey) {
+        throw new Error('defaultActiveKey Cannot be a disabled Tabpane component');
       }
       return React.cloneElement(childElement, {
         itemKey: child?.props?.itemKey,

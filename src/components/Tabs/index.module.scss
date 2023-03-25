@@ -3,6 +3,7 @@
   align-items: center;
   border-bottom: 1px solid rgba(28, 31, 35, 0.22);
   color: rgba(28, 31, 35, 0.62);
+  user-select: none;
   > .tabPane {
     padding: 15px 0;
     margin-right: 30px;
@@ -32,6 +33,7 @@
   display: flex;
   align-items: center;
   color: rgba(28, 31, 35, 0.62);
+  user-select: none;
   > .tabPane {
     margin-right: 8px;
     padding: 8px 12px;
@@ -61,6 +63,7 @@
   align-content: center;
   color: rgba(28, 31, 35, 0.62);
   border-bottom: 1px solid rgba(165, 170, 178, 0.22);
+  user-select: none;
   > .tabPane {
     margin-right: 8px;
     padding: 8px 12px;
@@ -91,6 +94,7 @@
   color: rgba(28, 31, 35, 0.62);
   margin-right: 20px;
   border-right: 1px solid rgba(165, 170, 178, 0.22);
+  user-select: none;
   > .tabPane {
     padding: 12px;
     cursor: pointer;
@@ -117,6 +121,7 @@
   color: rgba(28, 31, 35, 0.62);
   margin-right: 20px;
   border-right: 1px solid rgba(165, 170, 178, 0.22);
+  user-select: none;
   > .tabPane {
     padding: 8px 12px;
     cursor: pointer;
@@ -142,6 +147,7 @@
 .vertical_button {
   display: inline-block;
   color: rgba(28, 31, 35, 0.62);
+  user-select: none;
   margin-right: 20px;
   > .tabPane {
     padding: 8px 12px;
@@ -169,4 +175,18 @@
 
 .content_wrap {
   padding: 12px 0;
+}
+
+.disabled {
+  color: rgba(28, 31, 35, 0.35);
+  background-color: rgba(46, 50, 56, 0.05);
+  box-shadow: none;
+  cursor: not-allowed !important;
+  > * {
+    pointer-events: none !important;
+  }
+  &:hover {
+    color: rgba(28, 31, 35, 0.35) !important;
+    background-color: rgba(46, 50, 56, 0.05) !important;
+  }
 }
