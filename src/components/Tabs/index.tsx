@@ -10,8 +10,9 @@ interface TabsProps {
   children?: any;
   mode?: ModeType; // 横向|纵向
   className?: string;
-  activeKey?: string; // 当前激活的 tab 页的 itemKey 值
-  onChange?: (activeKey: string) => void;
+  style?: CSSProperties;
+  defaultActiveKey?: string; // 初始激活的itemKey
+  onChange?: (activeKey: string) => void; // 切换tab触发的函数
 }
 interface ContextType {
   activeKey: string;
@@ -19,14 +20,19 @@ interface ContextType {
 }
 
 export const TabsContext = createContext<ContextType>({
-  activeKey: '0',
+  activeKey: '',
 });
 
 const Tabs: React.FC<TabsProps> = (props) => {
-  const { type, children, mode, className, activeKey = '0', onChange } = props;
-  const [currentActive, setActive] = useState<string>(activeKey);
+  const { type, children, mode, className, style, defaultActiveKey = '', onChange } = props;
+  // 如果没传defaultActiveKey则取第一个TabPane的itemKey
+  const [currentActive, setActive] = useState<string>(
+    defaultActiveKey || children[0]?.props?.itemKey
+  );
 
-  const classes = classnames(Styles.base, className, {});
+  const classes = classnames(Styles.base, className, {
+    [Styles[`tabs_${type}`]]: type,
+  });
 
   // 切换 tab 页时的回调函数
   const handleChange = (key: string) => {
@@ -39,23 +45,35 @@ const Tabs: React.FC<TabsProps> = (props) => {
     onChange: handleChange,
   };
 
-  const renderChildren = () => {
+  // 渲染TabPane组件
+  const renderTabPane = () => {
     return React.Children.map(children, (child) => {
       const childElement = child as React.FunctionComponentElement<TabPaneProps>;
       const { displayName } = childElement.type;
+      // Tabs的children必须是Tabpane，否则抛出error
       if (displayName !== 'TabPane') {
-        throw new Error('必须是TabPane组件');
+        throw new Error('children must be Tabpane component');
       }
       return React.cloneElement(childElement, {
         itemKey: child?.props?.itemKey,
       });
     });
   };
+
+  // 渲染Tabpane组件的children
+  const renderContent = () => {
+    return React.Children.map(children, (child) => {
+      if (child?.props?.itemKey === currentActive) {
+        return child.props.children;
+      }
+      return null;
+    });
+  };
   return (
     <TabsContext.Provider value={contextValue}>
-      <div className={classes}>
-        <ul className={Styles.tabs_wrap}>{renderChildren()}</ul>
-        <div>{children[0].props.children}</div>
+      <div style={style}>
+        <ul className={classes}>{renderTabPane()}</ul>
+        <div className={Styles.content_wrap}>{renderContent()}</div>
       </div>
     </TabsContext.Provider>
   );
@@ -66,8 +84,9 @@ Tabs.defaultProps = {
   children: null,
   mode: 'horizontal',
   className: '',
-  activeKey: '0',
   onChange: undefined,
+  style: {},
+  defaultActiveKey: '',
 };
 
 export { TabPane, Tabs };

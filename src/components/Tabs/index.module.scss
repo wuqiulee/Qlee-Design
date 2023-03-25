@@ -2,13 +2,43 @@
   color: rgba(28, 31, 35, 0.62);
 }
 
-.tabs_wrap {
+// .tabs_wrap {
+//   display: flex;
+//   align-items: center;
+//   > .tabPane {
+//     margin-right: 30px;
+//   }
+//   & > .tabPane:last-child {
+//     margin-right: 0;
+//   }
+// }
+
+.tabs_line {
   display: flex;
   align-items: center;
-  > li {
+  color: rgba(28, 31, 35, 0.62);
+  border-bottom: 1px solid rgba(28, 31, 35, 0.22);
+  > .tabPane {
+    padding: 15px 0;
     margin-right: 30px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    &:hover {
+      color: #000;
+      border-bottom-color: rgb(239, 233, 233);
+    }
   }
-  & > li:last-child {
+  & > .tabPane:last-child {
     margin-right: 0;
   }
+
+  .active {
+    color: #000;
+    font-weight: bold;
+    border-bottom: 2px solid blue;
+  }
+}
+
+.content_wrap {
+  padding: 20px 0;
 }
