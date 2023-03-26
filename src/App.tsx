@@ -1,7 +1,12 @@
 import React from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faMoon, faRocket } from '@fortawesome/free-solid-svg-icons';
 import Button from './components/Button';
 import Banner from './components/Banner';
 import { TabPane, Tabs } from './components/Tabs';
+import Icon from './components/Icon';
+
+library.add(faMoon, faRocket);
 
 function App() {
   return (
@@ -63,7 +68,7 @@ function App() {
         defaultActiveKey="2"
         type="button"
         mode="vertical"
-        tabBarExtraContent={<Button>按钮</Button>}
+        tabBarExtraContent={<Icon icon="moon" theme="danger" />}
         onTabClose={(key) => alert(key)}
       >
         <TabPane tab="tab1" itemKey="1" disabled>

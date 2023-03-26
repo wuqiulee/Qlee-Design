@@ -1,0 +1,16 @@
+$theme_colors: (
+  'primary': blue,
+  'secondary': #6c758d,
+  'success': green,
+  'info': #17a2b9,
+  'warning': yellow,
+  'danger': red,
+  'light': #f8f9fb,
+  'dark': #343a41,
+);
+
+@each $key, $val in $theme_colors {
+  .icon-#{$key} {
+    color: $val;
+  }
+}
