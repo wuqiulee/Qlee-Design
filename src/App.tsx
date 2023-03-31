@@ -5,6 +5,7 @@ import Button from './components/Button';
 import Banner from './components/Banner';
 import { TabPane, Tabs } from './components/Tabs';
 import Icon from './components/Icon';
+import Input from './components/Input';
 
 library.add(faMoon, faRocket);
 
@@ -63,25 +64,26 @@ function App() {
     //     }}
     //   />
     // </div>
-    <div style={{ margin: 30 }}>
-      <Tabs
-        defaultActiveKey="2"
-        type="button"
-        mode="vertical"
-        tabBarExtraContent={<Icon icon="moon" theme="danger" />}
-        onTabClose={(key) => alert(key)}
-      >
-        <TabPane tab="tab1" itemKey="1" disabled>
-          <div style={{ color: 'red' }}>child1</div>
-        </TabPane>
-        <TabPane tab="tab2" itemKey="2" closable>
-          child2
-        </TabPane>
-        <TabPane tab="tab3" itemKey="3" closable>
-          child3
-        </TabPane>
-      </Tabs>
-    </div>
+    // <div style={{ margin: 30 }}>
+    //   <Tabs
+    //     defaultActiveKey="2"
+    //     type="button"
+    //     mode="vertical"
+    //     tabBarExtraContent={<Icon icon="moon" theme="danger" />}
+    //     onTabClose={(key) => alert(key)}
+    //   >
+    //     <TabPane tab="tab1" itemKey="1" disabled>
+    //       <div style={{ color: 'red' }}>child1</div>
+    //     </TabPane>
+    //     <TabPane tab="tab2" itemKey="2" closable>
+    //       child2
+    //     </TabPane>
+    //     <TabPane tab="tab3" itemKey="3" closable>
+    //       child3
+    //     </TabPane>
+    //   </Tabs>
+    // </div>
+    <Input defaultValue="default" disabled />
   );
 }
 
