@@ -11,7 +11,7 @@ library.add(faMoon, faRocket);
 
 function App() {
   return (
-    /*  <div style={{ margin: 50 }}>
+    <div style={{ margin: 50 }}>
       <Button btnType="primary" theme="light" style={{ color: 'purple' }} block>
         hello
       </Button>
@@ -41,7 +41,7 @@ function App() {
       <Button btnType="warning" theme="solid" disabled>
         hello
       </Button>
-    </div> */
+    </div>
 
     // <div style={{ margin: 50 }}>
     //   <Banner
@@ -83,7 +83,7 @@ function App() {
     //     </TabPane>
     //   </Tabs>
     // </div>
-    <Input defaultValue="default" disabled />
+    // <Input defaultValue="default" disabled />
   );
 }
 

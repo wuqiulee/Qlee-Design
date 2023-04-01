@@ -1,46 +1,67 @@
-import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, CSSProperties, ReactNode } from 'react';
+/* eslint-disable react/default-props-match-prop-types */
+import {
+  FC,
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  CSSProperties,
+  ReactNode,
+  MouseEvent,
+  KeyboardEvent,
+} from 'react';
 import classnames from 'classnames';
-import Styles from './index.module.scss';
+import './index.scss';
 
 type BtnType = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 type ThemeType = 'light' | 'solid' | 'borderless';
 type SizeType = 'large' | 'default' | 'small';
 interface ButtonProps {
+  /** 按钮类型，可选值： */
   btnType?: BtnType;
+  /** 类名 */
   className?: string;
+  /** 按钮主题，可选值：solid（有背景色）、 borderless（无背景色）、 light（浅背景色） */
   theme?: ThemeType;
+  /** 按钮大小，可选值：large、default、small */
   size?: SizeType;
+  /** 禁用状态 */
   disabled?: boolean;
+  /** 块级按钮 */
   block?: boolean;
+  /** 子元素 */
   children: ReactNode;
+  /** 自定义样式 */
   style?: CSSProperties;
+  /** 点击事件 */
   onClick?: (event: MouseEvent) => void;
 }
 type NativeBtnProps = ButtonProps & ButtonHTMLAttributes<HTMLElement>;
 type AnchorBtnProps = ButtonProps & AnchorHTMLAttributes<HTMLElement>;
 type IProps = Partial<NativeBtnProps & AnchorBtnProps>;
 
-const Button: React.FC<IProps> = (props) => {
+/**
+ * 页面中最常用的的按钮元素，适合于完成特定的交互
+ */
+const Button: FC<IProps> = (props) => {
   const {
-    btnType = 'primary',
+    btnType,
     className,
-    theme = 'light',
-    size = 'default',
-    disabled = false,
-    block = false,
+    theme,
+    size,
+    disabled,
+    block,
     children,
     style,
     onClick,
     ...restProps
   } = props;
 
-  const classes = classnames(Styles.base, className, {
-    [Styles[`btn_${btnType}`]]: btnType,
-    [Styles[`solid_${btnType}`]]: theme === 'solid',
-    [Styles.empty]: theme === 'borderless',
-    [Styles[`btn_${size}`]]: size && size !== 'default',
-    [Styles.disabled]: disabled,
-    [Styles.block]: block,
+  const classes = classnames('btn_base', className, {
+    [`btn_${btnType}`]: btnType,
+    [`solid_${btnType}`]: theme === 'solid',
+    btn_empty: theme === 'borderless',
+    [`btn_${size}`]: size && size !== 'default',
+    btn_disabled: disabled,
+    btn_block: block,
   });
 
   return (
@@ -48,6 +69,14 @@ const Button: React.FC<IProps> = (props) => {
       {children}
     </div>
   );
+};
+
+Button.defaultProps = {
+  btnType: 'primary',
+  theme: 'light',
+  size: 'default',
+  disabled: false,
+  block: false,
 };
 
 export default Button;

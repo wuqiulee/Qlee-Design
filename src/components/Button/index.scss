@@ -19,7 +19,7 @@ $danger: #f93920;
   }
 }
 
-.base {
+.btn_base {
   display: inline-block;
   align-items: center;
   justify-content: center;
@@ -27,6 +27,7 @@ $danger: #f93920;
   padding: 6px 12px;
   font-weight: 600;
   cursor: pointer;
+  user-select: none;
 }
 
 // 浅色背景
@@ -64,7 +65,7 @@ $danger: #f93920;
 }
 
 // 无背景
-.empty {
+.btn_empty {
   background-color: transparent;
   &:hover {
     background-color: rgba(46, 50, 56, 0.05);
@@ -80,7 +81,7 @@ $danger: #f93920;
 }
 
 // 禁用
-.disabled {
+.btn_disabled {
   color: rgba(28, 31, 35, 0.35);
   background-color: rgba(46, 50, 56, 0.05);
   box-shadow: none;
@@ -94,7 +95,7 @@ $danger: #f93920;
 }
 
 // 块状按钮
-.block {
+.btn_block {
   width: 100%;
   text-align: center;
 }

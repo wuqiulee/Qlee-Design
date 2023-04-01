@@ -41,5 +41,6 @@ module.exports = {
     'no-unused-expressions': 'off',
     'react/jsx-no-constructed-context-values': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'react/require-default-props': 'off',
   },
 };
