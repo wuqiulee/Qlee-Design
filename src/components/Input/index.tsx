@@ -1,17 +1,31 @@
-import React, { FC, FocusEvent } from 'react';
+import React, { FC, InputHTMLAttributes, FocusEvent } from 'react';
 import classNames from 'classnames';
-import Styles from './index.module.scss';
+import './index.scss';
 
-export interface InputProps {
+type SizeType = 'default' | 'large' | 'small';
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  /** 默认值 */
   defaultValue?: string;
+  /** 是否禁用 */
   disabled?: boolean;
+  /** 输入框大小 */
+  size?: SizeType;
 }
 
+/**
+ * 输入框是最基本的接收用户文本输入的组件
+ * ### 如何引入
+ * ~~~js
+ *
+ * import { Input } from 'qlee-design';
+ * ~~~
+ */
 const Input: FC<InputProps> = (props) => {
-  const { defaultValue, disabled } = props;
-  const classes = classNames(Styles.input_wrap, {
-    [Styles.input_focus]: !disabled,
-    [Styles.input_disabled]: disabled,
+  const { defaultValue, disabled, size, ...restProps } = props;
+  const classes = classNames('input_wrap', {
+    input_focus: !disabled,
+    input_disabled: disabled,
+    [`input_size_${size}`]: size,
   });
 
   // 获取焦点
@@ -30,13 +44,14 @@ const Input: FC<InputProps> = (props) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
       disabled={disabled}
+      {...restProps}
     />
   );
 };
 
 Input.defaultProps = {
-  defaultValue: '',
   disabled: false,
+  size: 'default',
 };
 
 export default Input;
