@@ -1,3 +1,28 @@
+.input_box {
+  display: flex;
+  align-items: center;
+  & > .input_addon {
+    border: 1px solid transparent;
+    padding: 0 12px;
+    background-color: rgba(46, 50, 55, 0.05);
+  }
+  .input_content {
+    position: relative;
+    & > .input_prefix {
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding-left: 10px;
+    }
+    & > .input_suffix {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding-right: 10px;
+    }
+  }
+}
+
 .input_wrap {
   background-color: rgba(46, 50, 55, 0.05);
   border: 1px solid transparent;
