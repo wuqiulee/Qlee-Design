@@ -1,7 +1,7 @@
 import React, { useContext, useRef, ReactNode, CSSProperties, MouseEvent } from 'react';
 import classnames from 'classnames';
 import { TabsContext } from './index';
-import Styles from './index.module.scss';
+import './index.scss';
 
 export interface TabPaneProps {
   tab: ReactNode;
@@ -18,9 +18,9 @@ const TabPane: React.FC<TabPaneProps> = (props) => {
   const { activeKey, onChange, onTabClose } = useContext(TabsContext);
   const TabRef = useRef(null);
 
-  const classes = classnames(Styles.tabPane, className, {
-    [Styles.active]: activeKey === itemKey,
-    [Styles.disabled]: disabled,
+  const classes = classnames('tabPane', className, {
+    active: activeKey === itemKey,
+    tabs_disabled: disabled,
   });
 
   // 切换 tab 页触发的回调
@@ -40,7 +40,7 @@ const TabPane: React.FC<TabPaneProps> = (props) => {
     <li className={classes} style={style} onClick={handleClick} ref={TabRef}>
       <span>{tab}</span>
       {closable && (
-        <span className={Styles.closable} onClick={handleClose}>
+        <span className="tabs_closable" onClick={handleClose}>
           ×
         </span>
       )}

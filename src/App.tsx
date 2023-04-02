@@ -11,37 +11,37 @@ library.add(faMoon, faRocket);
 
 function App() {
   return (
-    <div style={{ margin: 50 }}>
-      <Button btnType="primary" theme="light" style={{ color: 'purple' }} block>
-        hello
-      </Button>
-      <Button disabled onClick={() => alert(1)}>
-        hello
-      </Button>
-      <Button btnType="secondary" theme="light">
-        hello
-      </Button>
-      <Button btnType="tertiary" theme="light">
-        hello
-      </Button>
-      <Button btnType="warning" theme="light">
-        hello
-      </Button>
-      <hr />
-      <Button size="default">hello</Button>
-      <Button btnType="danger" theme="solid">
-        hello1313
-      </Button>
-      <Button btnType="secondary" theme="borderless">
-        hello
-      </Button>
-      <Button btnType="tertiary" theme="solid" disabled>
-        hello
-      </Button>
-      <Button btnType="warning" theme="solid" disabled>
-        hello
-      </Button>
-    </div>
+    // <div style={{ margin: 50 }}>
+    //   <Button btnType="primary" theme="light" style={{ color: 'purple' }} block>
+    //     hello
+    //   </Button>
+    //   <Button disabled onClick={() => alert(1)}>
+    //     hello
+    //   </Button>
+    //   <Button btnType="secondary" theme="light">
+    //     hello
+    //   </Button>
+    //   <Button btnType="tertiary" theme="light">
+    //     hello
+    //   </Button>
+    //   <Button btnType="warning" theme="light">
+    //     hello
+    //   </Button>
+    //   <hr />
+    //   <Button size="default">hello</Button>
+    //   <Button btnType="danger" theme="solid">
+    //     hello1313
+    //   </Button>
+    //   <Button btnType="secondary" theme="borderless">
+    //     hello
+    //   </Button>
+    //   <Button btnType="tertiary" theme="solid" disabled>
+    //     hello
+    //   </Button>
+    //   <Button btnType="warning" theme="solid" disabled>
+    //     hello
+    //   </Button>
+    // </div>
 
     // <div style={{ margin: 50 }}>
     //   <Banner
@@ -64,25 +64,25 @@ function App() {
     //     }}
     //   />
     // </div>
-    // <div style={{ margin: 30 }}>
-    //   <Tabs
-    //     defaultActiveKey="2"
-    //     type="button"
-    //     mode="vertical"
-    //     tabBarExtraContent={<Icon icon="moon" theme="danger" />}
-    //     onTabClose={(key) => alert(key)}
-    //   >
-    //     <TabPane tab="tab1" itemKey="1" disabled>
-    //       <div style={{ color: 'red' }}>child1</div>
-    //     </TabPane>
-    //     <TabPane tab="tab2" itemKey="2" closable>
-    //       child2
-    //     </TabPane>
-    //     <TabPane tab="tab3" itemKey="3" closable>
-    //       child3
-    //     </TabPane>
-    //   </Tabs>
-    // </div>
+    <div style={{ margin: 30 }}>
+      <Tabs
+        defaultActiveKey="2"
+        type="card"
+        mode="vertical"
+        tabBarExtraContent={<Icon icon="moon" theme="danger" />}
+        onTabClose={(key) => alert(key)}
+      >
+        <TabPane tab="tab1" itemKey="1" disabled>
+          <div style={{ color: 'red' }}>child1</div>
+        </TabPane>
+        <TabPane tab="tab2" itemKey="2" closable>
+          child2
+        </TabPane>
+        <TabPane tab="tab3" itemKey="3" closable>
+          child3
+        </TabPane>
+      </Tabs>
+    </div>
     // <Input defaultValue="default" disabled />
   );
 }

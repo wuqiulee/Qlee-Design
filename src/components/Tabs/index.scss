@@ -1,3 +1,4 @@
+@import url('../../index.scss');
 .tabs_line {
   display: flex;
   align-items: center;
@@ -89,7 +90,7 @@
   }
 }
 
-.vertical_line {
+.tabs_vertical_line {
   display: inline-block;
   color: rgba(28, 31, 35, 0.62);
   margin-right: 20px;
@@ -116,7 +117,7 @@
   }
 }
 
-.vertical_card {
+.tabs_vertical_card {
   display: inline-block;
   color: rgba(28, 31, 35, 0.62);
   margin-right: 20px;
@@ -144,7 +145,7 @@
   }
 }
 
-.vertical_button {
+.tabs_vertical_button {
   display: inline-block;
   color: rgba(28, 31, 35, 0.62);
   user-select: none;
@@ -173,11 +174,11 @@
   }
 }
 
-.content_wrap {
+.tabs_content_wrap {
   padding: 12px 0;
 }
 
-.disabled {
+.tabs_disabled {
   color: rgba(28, 31, 35, 0.35);
   background-color: rgba(46, 50, 56, 0.05);
   box-shadow: none;
@@ -191,13 +192,13 @@
   }
 }
 
-.tab_bar_extra {
+.tabs_bar_extra {
   float: right;
   flex: 1;
   text-align: right;
 }
 
-.closable {
+.tabs_closable {
   font-size: 20px;
   margin-left: 12px;
   cursor: pointer;

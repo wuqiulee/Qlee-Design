@@ -1,20 +1,28 @@
 import React, { useState, createContext, CSSProperties, ReactNode, Children } from 'react';
 import classnames from 'classnames';
 import TabPane, { TabPaneProps } from './TabPane';
-import Styles from './index.module.scss';
+import './index.scss';
 
 type TabsType = 'line' | 'card' | 'button';
 type ModeType = 'horizontal' | 'vertical';
 interface TabsProps {
+  /** 标签栏的样式，可选line、 card、 button */
   type?: TabsType;
   children?: any;
-  mode?: ModeType; // 横向|纵向
+  /** tab 的位置 */
+  mode?: ModeType;
+  /** 类名 */
   className?: string;
+  /** 样式名 */
   style?: CSSProperties;
-  defaultActiveKey?: string; // 初始激活的itemKey
-  onChange?: (activeKey: string) => void; // 切换tab触发的函数
-  tabBarExtraContent?: ReactNode; // 标签栏内容扩展
-  onTabClose?: (itemKey: string) => void; // 关闭tab页触发的回调
+  /** 初始激活的itemKey */
+  defaultActiveKey?: string;
+  /** 切换tab触发的函数 */
+  onChange?: (activeKey: string) => void;
+  /** 标签栏内容扩展 */
+  tabBarExtraContent?: ReactNode;
+  /** 关闭tab页触发的回调 */
+  onTabClose?: (itemKey: string) => void;
 }
 interface ContextType {
   activeKey: string;
@@ -26,6 +34,14 @@ export const TabsContext = createContext<ContextType>({
   activeKey: '',
 });
 
+/**
+ * 当内容需要分组并在不同模块页面中展示，可使用 Tabs 标签栏目对不同的组/页之间进行切换
+ * ### 如何引入
+ * ~~~js
+ *
+ * import { Tabs, TabPane } from 'qlee-design';
+ * ~~~
+ */
 const Tabs: React.FC<TabsProps> = (props) => {
   const {
     type,
@@ -44,9 +60,9 @@ const Tabs: React.FC<TabsProps> = (props) => {
   );
   const [refresh, setRefresh] = useState<any>([0, '']);
 
-  const classes = classnames(Styles.base, className, {
-    [Styles[`tabs_${type}`]]: mode === 'horizontal',
-    [Styles[`vertical_${type}`]]: mode === 'vertical',
+  const classes = classnames(className, {
+    [`tabs_${type}`]: mode === 'horizontal',
+    [`tabs_vertical_${type}`]: mode === 'vertical',
   });
 
   const wrapStyle = mode === 'vertical' ? { ...style, display: 'flex' } : style;
@@ -109,9 +125,9 @@ const Tabs: React.FC<TabsProps> = (props) => {
       <div style={wrapStyle}>
         <ul className={classes}>
           {renderTabPane()}
-          {tabBarExtraContent && <div className={Styles.tab_bar_extra}>{tabBarExtraContent}</div>}
+          {tabBarExtraContent && <div className="tabs_bar_extra">{tabBarExtraContent}</div>}
         </ul>
-        <div className={Styles.content_wrap}>{renderContent()}</div>
+        <div className="tabs_content_wrap">{renderContent()}</div>
       </div>
     </TabsContext.Provider>
   );
