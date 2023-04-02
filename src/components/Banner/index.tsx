@@ -7,7 +7,33 @@ import React, {
   CSSProperties,
 } from 'react';
 import classnames from 'classnames';
+import {
+  faCircleInfo,
+  faTriangleExclamation,
+  faCircleExclamation,
+  faCircleCheck,
+} from '@fortawesome/free-solid-svg-icons';
+import Icon from '../Icon';
 import './index.scss';
+
+const IconMap = {
+  info: {
+    color: 'blue',
+    icon: faCircleInfo,
+  },
+  warning: {
+    color: 'orange',
+    icon: faTriangleExclamation,
+  },
+  danger: {
+    color: 'red',
+    icon: faCircleExclamation,
+  },
+  success: {
+    color: 'green',
+    icon: faCircleCheck,
+  },
+};
 
 type CurrentType = {
   current: HTMLDivElement;
@@ -29,6 +55,8 @@ interface BannerProps extends DOMAttributes<HTMLDivElement> {
   title?: ReactNode;
   /** 样式名 */
   style?: CSSProperties;
+  /** 自定义icon，为null不展示 */
+  icon?: any;
   /** 关闭时的回调函数 */
   onClose?: (event: MouseEvent) => void;
 }
@@ -37,7 +65,17 @@ interface BannerProps extends DOMAttributes<HTMLDivElement> {
  * 横幅通常用于标识全页的状态或通知等。它通常是常驻的，需要用户主动将其关闭
  */
 const Banner: React.FC<BannerProps> = (props) => {
-  const { type, description, fullMode, bordered, title, className, onClose, ...restProps } = props;
+  const {
+    type = 'info',
+    description,
+    fullMode,
+    bordered,
+    title,
+    className,
+    icon,
+    onClose,
+    ...restProps
+  } = props;
 
   const bannerRef = useRef(null);
 
@@ -52,11 +90,20 @@ const Banner: React.FC<BannerProps> = (props) => {
     onClose && onClose(e);
   };
 
+  const iconStyle = {
+    marginRight: 8,
+    fontSize: 18,
+    color: IconMap[type].color,
+  };
+
   return (
     <div className={classes} ref={bannerRef} {...restProps}>
       <div className="banner_content">
         <div className="banner_title">{title}</div>
-        <div>{description}</div>
+        <div>
+          {icon !== null && <Icon icon={icon || IconMap[type].icon} style={iconStyle} />}
+          <span>{description}</span>
+        </div>
       </div>
       <div className="banner_close_icon" onClick={handleClick}>
         <svg
