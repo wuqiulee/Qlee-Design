@@ -40,6 +40,11 @@ type IProps = Partial<NativeBtnProps & AnchorBtnProps>;
 
 /**
  * 页面中最常用的的按钮元素，适合于完成特定的交互
+ * ### 如何引入
+ * ~~~js
+ *
+ * import { Button } from 'qlee-design';
+ * ~~~
  */
 const Button: FC<IProps> = (props) => {
   const {

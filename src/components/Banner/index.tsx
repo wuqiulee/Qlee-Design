@@ -62,7 +62,12 @@ interface BannerProps extends DOMAttributes<HTMLDivElement> {
 }
 
 /**
- * 横幅通常用于标识全页的状态或通知等。它通常是常驻的，需要用户主动将其关闭
+ * Input 输入框 通过鼠标或键盘输入内容，是最基础的表单域的包装。
+ * ### 如何引入
+ * ~~~js
+ *
+ * import { Banner } from 'qlee-design';
+ * ~~~
  */
 const Banner: React.FC<BannerProps> = (props) => {
   const {
