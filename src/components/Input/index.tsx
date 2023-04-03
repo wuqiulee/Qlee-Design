@@ -7,9 +7,12 @@ import React, {
   useRef,
   useEffect,
   useState,
+  ChangeEvent,
+  MouseEvent,
 } from 'react';
 import classNames from 'classnames';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { debounce } from 'lodash';
 import Icon from '../Icon';
 import './index.scss';
 
@@ -40,6 +43,8 @@ export interface InputProps
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
   /** 输入框失焦的回调 */
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  /** 输入框内容变化时的回调 */
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -64,6 +69,7 @@ const Input: FC<InputProps> = (props) => {
     showClear,
     onFocus,
     onBlur,
+    onChange,
     ...restProps
   } = props;
 
@@ -86,17 +92,20 @@ const Input: FC<InputProps> = (props) => {
   const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.target.style.borderColor = 'blue';
     disableRef.current = true;
-    showClear && ((suffixRef.current! as HTMLElement).style.display = 'block');
+    if (showClear && e.target.value) {
+      (suffixRef.current! as HTMLElement).style.display = 'block';
+    }
     onFocus && onFocus(e);
   };
   // 失去焦点
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     e.target.style.borderColor = 'transparent';
+    disableRef.current = false;
     showClear && ((suffixRef.current! as HTMLElement).style.display = 'none');
     onBlur && onBlur(e);
   };
-  const handleMouseEnter = () => {
-    if (showClear) {
+  const handleMouseEnter = (e: any) => {
+    if (showClear && !disableRef.current && e.target.value) {
       (suffixRef.current! as HTMLElement).style.display = 'block';
     }
   };
@@ -105,15 +114,27 @@ const Input: FC<InputProps> = (props) => {
       (suffixRef.current! as HTMLElement).style.display = 'none';
     }
   };
+  const handleInput = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    const ele: HTMLElement = suffixRef.current!;
+    const { value } = e.target;
+    onChange && onChange(e);
+    if (!value) {
+      disableRef.current = true;
+      ele.style.display = 'none';
+      return;
+    }
+    // value有值再显示
+    value && (ele.style.display = 'block');
+  }, 100);
 
   // 动态获取Input padding
   useEffect(() => {
-    const prefixEle: HTMLElement | null = prefixRef.current;
-    const suffixEle: HTMLElement | null = suffixRef.current;
+    const prefixEle: HTMLElement = prefixRef.current!;
+    const suffixEle: HTMLElement = suffixRef.current!;
     const newStyle = {
       ...style,
-      paddingLeft: prefix ? prefixEle!.offsetWidth + 10 : 12,
-      paddingRight: suffix ? suffixEle!.offsetWidth + 10 : 12,
+      paddingLeft: prefix ? prefixEle.offsetWidth + 10 : 12,
+      paddingRight: suffix ? suffixEle.offsetWidth + 10 : 12,
     };
     setInputStyle(newStyle);
   }, [prefix, suffix]);
@@ -137,6 +158,7 @@ const Input: FC<InputProps> = (props) => {
           defaultValue={defaultValue}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          onInput={handleInput}
           disabled={disabled}
           style={inputStyle}
           {...restProps}
