@@ -74,3 +74,17 @@ PrefixAndSuffix.parameters = {
     },
   },
 };
+
+export const ShowClear = Template.bind({});
+ShowClear.args = {
+  defaultValue: 'click to clear',
+  showClear: true,
+};
+ShowClear.storyName = '带移除图标';
+ShowClear.parameters = {
+  docs: {
+    description: {
+      story: '点击图标删除所有内容',
+    },
+  },
+};

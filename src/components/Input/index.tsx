@@ -9,6 +9,8 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import Icon from '../Icon';
 import './index.scss';
 
 type SizeType = 'default' | 'large' | 'small';
@@ -32,6 +34,12 @@ export interface InputProps
   className?: string;
   /** 样式名 */
   style?: CSSProperties;
+  /** 展示带移除图标 */
+  showClear?: boolean;
+  /** 输入框聚焦的回调 */
+  onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
+  /** 输入框失焦的回调 */
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -53,12 +61,16 @@ const Input: FC<InputProps> = (props) => {
     suffix,
     className,
     style,
+    showClear,
+    onFocus,
+    onBlur,
     ...restProps
   } = props;
 
   const [inputStyle, setInputStyle] = useState({});
   const prefixRef = useRef(null);
   const suffixRef = useRef(null);
+  const disableRef = useRef(false);
 
   const classes = classNames('input_wrap', className, {
     input_focus: !disabled,
@@ -67,15 +79,31 @@ const Input: FC<InputProps> = (props) => {
   });
   const boxClasses = classNames('input_box', {
     [`input_size_${size}`]: size,
+    input_showclear: showClear,
   });
 
   // 获取焦点
   const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
     e.target.style.borderColor = 'blue';
+    disableRef.current = true;
+    showClear && ((suffixRef.current! as HTMLElement).style.display = 'block');
+    onFocus && onFocus(e);
   };
   // 失去焦点
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     e.target.style.borderColor = 'transparent';
+    showClear && ((suffixRef.current! as HTMLElement).style.display = 'none');
+    onBlur && onBlur(e);
+  };
+  const handleMouseEnter = () => {
+    if (showClear) {
+      (suffixRef.current! as HTMLElement).style.display = 'block';
+    }
+  };
+  const handleMouseLeave = () => {
+    if (showClear && !disableRef.current) {
+      (suffixRef.current! as HTMLElement).style.display = 'none';
+    }
   };
 
   // 动态获取Input padding
@@ -93,10 +121,16 @@ const Input: FC<InputProps> = (props) => {
   return (
     <div className={boxClasses}>
       {addonBefore && <div className="input_addon">{addonBefore}</div>}
-      <div className="input_content">
-        <span className="input_prefix" ref={prefixRef}>
-          {prefix}
-        </span>
+      <div
+        className="input_content"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {prefix && (
+          <span className="input_prefix" ref={prefixRef}>
+            {prefix}
+          </span>
+        )}
         <input
           type="text"
           className={classes}
@@ -107,9 +141,11 @@ const Input: FC<InputProps> = (props) => {
           style={inputStyle}
           {...restProps}
         />
-        <span className="input_suffix" ref={suffixRef}>
-          {suffix}
-        </span>
+        {(suffix || showClear) && (
+          <span className="input_suffix" ref={suffixRef}>
+            {showClear ? <Icon icon={faCircleXmark} /> : suffix}
+          </span>
+        )}
       </div>
       {addonAfter && <div className="input_addon">{addonAfter}</div>}
     </div>
@@ -119,6 +155,7 @@ const Input: FC<InputProps> = (props) => {
 Input.defaultProps = {
   disabled: false,
   size: 'default',
+  showClear: false,
 };
 
 export default Input;
