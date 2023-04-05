@@ -42,5 +42,7 @@ module.exports = {
     'react/jsx-no-constructed-context-values': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'react/require-default-props': 'off',
+    'no-param-reassign': 'off',
+    'no-shadow': 'off',
   },
 };

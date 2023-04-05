@@ -37,7 +37,7 @@ export interface InputProps
   className?: string;
   /** 样式名 */
   style?: CSSProperties;
-  /** 展示带移除图标 */
+  /** 输入框有内容且 hover或focus时展示清除按钮 */
   showClear?: boolean;
   /** 输入框聚焦的回调 */
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
@@ -125,13 +125,15 @@ const Input: FC<InputProps> = (props) => {
     const ele: HTMLElement = suffixRef.current!;
     const { value } = e.target;
     onChange && onChange(e);
-    if (!value) {
+    if (!value && ele) {
       disableRef.current = true;
       ele.style.display = 'none';
       return;
     }
     // value有值再显示
-    value && (ele.style.display = 'block');
+    if (value && ele) {
+      ele.style.display = 'block';
+    }
   }, 100);
   // 清空输入框
   const clearInput = (e: MouseEvent<SVGSVGElement>) => {
