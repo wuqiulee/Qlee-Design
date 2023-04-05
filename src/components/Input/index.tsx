@@ -45,6 +45,8 @@ export interface InputProps
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   /** 输入框内容变化时的回调 */
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  /** 点击清除按钮时的回调 */
+  onClear?: (e: MouseEvent<SVGSVGElement>) => void;
 }
 
 /**
@@ -70,6 +72,7 @@ const Input: FC<InputProps> = (props) => {
     onFocus,
     onBlur,
     onChange,
+    onClear,
     ...restProps
   } = props;
 
@@ -77,6 +80,7 @@ const Input: FC<InputProps> = (props) => {
   const prefixRef = useRef(null);
   const suffixRef = useRef(null);
   const disableRef = useRef(false);
+  const inputRef = useRef(null);
 
   const classes = classNames('input_wrap', className, {
     input_focus: !disabled,
@@ -101,7 +105,10 @@ const Input: FC<InputProps> = (props) => {
   const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
     e.target.style.borderColor = 'transparent';
     disableRef.current = false;
-    showClear && ((suffixRef.current! as HTMLElement).style.display = 'none');
+    showClear &&
+      setTimeout(() => {
+        (suffixRef.current! as HTMLElement).style.display = 'none';
+      }, 0);
     onBlur && onBlur(e);
   };
   const handleMouseEnter = (e: any) => {
@@ -126,7 +133,12 @@ const Input: FC<InputProps> = (props) => {
     // value有值再显示
     value && (ele.style.display = 'block');
   }, 100);
-
+  // 清空输入框
+  const clearInput = (e: MouseEvent<SVGSVGElement>) => {
+    (inputRef.current! as HTMLInputElement).value = '';
+    (suffixRef.current! as HTMLInputElement).style.display = 'none';
+    onClear && onClear(e);
+  };
   // 动态获取Input padding
   useEffect(() => {
     const prefixEle: HTMLElement = prefixRef.current!;
@@ -155,6 +167,7 @@ const Input: FC<InputProps> = (props) => {
         <input
           type="text"
           className={classes}
+          ref={inputRef}
           defaultValue={defaultValue}
           onFocus={handleFocus}
           onBlur={handleBlur}
@@ -165,7 +178,7 @@ const Input: FC<InputProps> = (props) => {
         />
         {(suffix || showClear) && (
           <span className="input_suffix" ref={suffixRef}>
-            {showClear ? <Icon icon={faCircleXmark} /> : suffix}
+            {showClear ? <Icon icon={faCircleXmark} onClick={clearInput} /> : suffix}
           </span>
         )}
       </div>

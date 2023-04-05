@@ -79,6 +79,9 @@ export const ShowClear = Template.bind({});
 ShowClear.args = {
   defaultValue: 'click to clear',
   showClear: true,
+  onClear(e) {
+    alert('clear input value');
+  },
 };
 ShowClear.storyName = '带移除图标';
 ShowClear.parameters = {
