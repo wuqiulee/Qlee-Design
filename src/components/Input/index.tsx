@@ -125,7 +125,7 @@ const Input: FC<InputProps> = (props) => {
     const ele: HTMLElement = suffixRef.current!;
     const { value } = e.target;
     onChange && onChange(e);
-    if (!value && ele) {
+    if (!value && ele && showClear) {
       disableRef.current = true;
       ele.style.display = 'none';
       return;
