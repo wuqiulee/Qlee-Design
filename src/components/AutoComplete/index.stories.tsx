@@ -6,6 +6,13 @@ import AutoComplete from './index';
 export default {
   title: 'Example/AutoComplete 自动完成',
   component: AutoComplete,
+  decorators: [
+    (Story) => (
+      <div style={{ marginBottom: 200 }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof AutoComplete>;
 
 const Template: ComponentStory<typeof AutoComplete> = (args) => <AutoComplete {...args} />;
@@ -14,7 +21,6 @@ const handleFetch = (query: string) => {
   return fetch(`https://api.github.com/search/users?q=${query}`)
     .then((res) => res.json())
     .then(({ items }) => {
-      console.log(items);
       return items.slice(0, 10).map((item: any) => ({ value: item.login, ...item }));
     });
 };

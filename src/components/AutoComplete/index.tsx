@@ -73,7 +73,6 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   };
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
-    console.log(value, 'value');
     setInputValue(value);
     triggerSearch.current = true;
   };
@@ -81,7 +80,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
     return renderOption ? renderOption(item) : item.value;
   };
   const generateDropdown = () => {
-    return (
+    return suggestions.length ? (
       <ul className="suggestion-list">
         {loading && (
           <div className="suggstions-loading-icon">
@@ -100,7 +99,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
           );
         })}
       </ul>
-    );
+    ) : null;
   };
 
   useClickOutside(componentRef, () => {
@@ -135,7 +134,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   return (
     <div className="auto-complete" ref={componentRef}>
       <Input value={inputValue} onChange={handleChange} onKeyDown={handleKeyDown} {...restProps} />
-      {generateDropdown()}
+      {showDropdown && generateDropdown()}
     </div>
   );
 };

@@ -10,7 +10,7 @@
   z-index: 100;
   top: calc(100% + 8px);
   left: 0;
-  border: 1px solid red;
+  border: 1px solid #ebe3e3;
   width: 100%;
   .suggstions-loading-icon {
     display: flex;
@@ -21,13 +21,11 @@
   .suggestion-item {
     padding: 10px;
     cursor: pointer;
-    color: skyblue;
     &.is-active {
-      background: red !important;
-      color: #fff !important;
+      background-color: #ececec;
     }
     &:hover {
-      color: peru !important;
+      background-color: #eaeaea;
     }
   }
 }
