@@ -121,7 +121,7 @@ const Input: FC<InputProps> = (props) => {
       (suffixRef.current! as HTMLElement).style.display = 'none';
     }
   };
-  const handleInput = debounce((e: ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     const ele: HTMLElement = suffixRef.current!;
     const { value } = e.target;
     onChange && onChange(e);
@@ -134,7 +134,7 @@ const Input: FC<InputProps> = (props) => {
     if (value && ele) {
       ele.style.display = 'block';
     }
-  }, 100);
+  };
   // 清空输入框
   const clearInput = (e: MouseEvent<SVGSVGElement>) => {
     (inputRef.current! as HTMLInputElement).value = '';
