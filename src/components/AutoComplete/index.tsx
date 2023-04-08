@@ -81,15 +81,15 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   };
   const generateDropdown = () => {
     return suggestions.length ? (
-      <ul className="suggestion-list">
+      <ul className="suggestion_list">
         {loading && (
-          <div className="suggstions-loading-icon">
+          <div className="suggstions_loading_icon">
             <Icon icon={faSpinner} spin />
           </div>
         )}
         {suggestions.map((item, index) => {
-          const cnames = classNames('suggestion-item', {
-            'is-active': index === highlightIndex,
+          const cnames = classNames('suggestion_item', {
+            is_active: index === highlightIndex,
           });
           return (
             // eslint-disable-next-line react/no-array-index-key
@@ -132,7 +132,7 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   }, [debouncedValue, fetchData]);
 
   return (
-    <div className="auto-complete" ref={componentRef}>
+    <div className="auto_complete" ref={componentRef}>
       <Input value={inputValue} onChange={handleChange} onKeyDown={handleKeyDown} {...restProps} />
       {showDropdown && generateDropdown()}
     </div>

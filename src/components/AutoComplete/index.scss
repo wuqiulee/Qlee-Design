@@ -1,7 +1,7 @@
-.auto-complete {
+.auto_complete {
   position: relative;
 }
-.suggestion-list {
+.suggestion_list {
   list-style: none;
   padding-left: 0;
   white-space: nowrap;
@@ -12,16 +12,16 @@
   left: 0;
   border: 1px solid #ebe3e3;
   width: 100%;
-  .suggstions-loading-icon {
+  .suggstions_loading_icon {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 75px;
   }
-  .suggestion-item {
+  .suggestion_item {
     padding: 10px;
     cursor: pointer;
-    &.is-active {
+    &.is_active {
       background-color: #ececec;
     }
     &:hover {
