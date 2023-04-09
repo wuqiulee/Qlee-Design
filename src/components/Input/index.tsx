@@ -12,7 +12,6 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { debounce } from 'lodash';
 import Icon from '../Icon';
 import './index.scss';
 
