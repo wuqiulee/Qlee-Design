@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import AutoComplete from './index';
+import AutoComplete, { DataSourceType } from './index';
 
 export default {
   title: 'Example/AutoComplete 自动完成',
@@ -37,19 +37,29 @@ Default.parameters = {
   },
 };
 
-// export const BannerType: ComponentStory<typeof AutoComplete> = () => (
-//   <>
-//     <Banner type="info" description="普通消息提示" />
-//     <Banner type="warning" description="warning消息提示" style={{ margin: '5px 0' }} />
-//     <Banner type="danger" description="danger消息提示" />
-//     <Banner type="success" description="success消息提示" style={{ marginTop: 5 }} />
-//   </>
-// );
-// BannerType.storyName = '不同类型';
-// BannerType.parameters = {
-//   docs: {
-//     description: {
-//       story: '支持4种类型：info、warning、danger、success。默认为 info',
-//     },
-//   },
-// };
+interface GithubUserProps {
+  login: string;
+  url: string;
+  avatar_url: string;
+}
+
+const renderOption = (item: DataSourceType) => {
+  const itemWithGithub = item as DataSourceType<GithubUserProps>;
+  return (
+    <>
+      <h2>Name: {itemWithGithub.value}</h2>
+      <p>url: {itemWithGithub.url}</p>
+    </>
+  );
+};
+export const BannerType: ComponentStory<typeof AutoComplete> = () => (
+  <AutoComplete fetchData={handleFetch} renderOption={renderOption} />
+);
+BannerType.storyName = '自定义渲染内容';
+BannerType.parameters = {
+  docs: {
+    description: {
+      story: '自定义渲染内容',
+    },
+  },
+};
