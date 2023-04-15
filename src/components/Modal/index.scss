@@ -5,11 +5,12 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.45);
+  z-index: 999;
 }
 
 .modal_wrap {
   position: fixed;
-  top: 50px;
+  top: 100px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #fff;

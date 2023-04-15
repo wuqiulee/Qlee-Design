@@ -9,19 +9,22 @@ export default {
   component: Modal,
 } as ComponentMeta<typeof Modal>;
 
-const Template: ComponentStory<typeof Modal> = (args) => {
+export const Default: ComponentStory<typeof Modal> = () => {
   const [visible, setVisible] = useState(false);
+  const handleOk = () => {
+    setVisible(false);
+  };
+  const handleCancel = () => {
+    setVisible(false);
+  };
   return (
-    <div>
+    <>
       <Button onClick={() => setVisible(true)}>打开弹窗</Button>
-      <Modal visible={visible} {...args} />
-    </div>
+      <Modal visible={visible} title="我是标题" onOk={handleOk} onCancel={handleCancel}>
+        我是模态框
+      </Modal>
+    </>
   );
-};
-export const Default = Template.bind({});
-Default.args = {
-  title: '我是标题',
-  children: <div>haha</div>,
 };
 Default.storyName = '基本用法';
 Default.parameters = {
