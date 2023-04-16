@@ -14,7 +14,7 @@ import './index.scss';
 type BtnType = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 type ThemeType = 'light' | 'solid' | 'borderless';
 type SizeType = 'large' | 'default' | 'small';
-interface ButtonProps {
+export interface ButtonProps {
   /** 按钮类型，可选值： */
   btnType?: BtnType;
   /** 类名 */
@@ -28,7 +28,7 @@ interface ButtonProps {
   /** 块级按钮 */
   block?: boolean;
   /** 子元素 */
-  children: ReactNode;
+  children?: ReactNode;
   /** 自定义样式 */
   style?: CSSProperties;
   /** 点击事件 */

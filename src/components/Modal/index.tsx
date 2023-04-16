@@ -1,7 +1,9 @@
 import React, { Dispatch, FC, MouseEvent, ReactNode, SetStateAction, useEffect } from 'react';
 import classNames from 'classnames';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import Icon from '../Icon';
 import './index.scss';
-import Button from '../Button';
+import Button, { ButtonProps } from '../Button';
 
 interface ModalProps {
   /** 弹窗标题 */
@@ -20,6 +22,12 @@ interface ModalProps {
   cancelText?: string;
   /** 是否允许通过点击遮罩来关闭模态框，需与setVisible搭配使用 */
   maskClosable?: Boolean;
+  /** 确认按钮的props */
+  okBtnProps?: ButtonProps;
+  /** 取消按钮的props */
+  cancelBtnProps?: ButtonProps;
+  /** 是否开启全屏 */
+  fullScreen?: Boolean;
   /** 点击确认按钮时的回调函数 */
   onOk?: () => void;
   /** 点击取消按钮时的回调函数 */
@@ -46,12 +54,17 @@ const Modal: FC<ModalProps> = (props) => {
     okText,
     cancelText,
     maskClosable,
+    okBtnProps,
+    cancelBtnProps,
+    fullScreen,
     onOk,
     onCancel,
     setVisible,
   } = props;
 
-  const classes = classNames('modal_wrap');
+  const classes = classNames('modal_wrap', {
+    modal_full: fullScreen,
+  });
 
   const handleClickMask = (e: MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
@@ -79,13 +92,18 @@ const Modal: FC<ModalProps> = (props) => {
       onClick={handleClickMask}
     >
       <div className={classes} style={{ width, height }}>
-        <h3>{title}</h3>
-        <div>{children}</div>
+        <div className="modal_title">
+          <span>{title}</span>
+          <span className="icon" onClick={onCancel}>
+            <Icon icon={faXmark} />
+          </span>
+        </div>
+        <div className="modal_content">{children}</div>
         <div className="modal_btn">
-          <Button btnType="tertiary" onClick={onCancel}>
+          <Button onClick={onCancel} {...okBtnProps}>
             {cancelText}
           </Button>
-          <Button style={{ margin: '0 0 0 4px' }} onClick={onOk}>
+          <Button style={{ margin: '0 0 0 4px' }} onClick={onOk} {...cancelBtnProps}>
             {okText}
           </Button>
         </div>
@@ -100,6 +118,8 @@ Modal.defaultProps = {
   okText: '确认',
   cancelText: '取消',
   maskClosable: false,
+  okBtnProps: { btnType: 'tertiary' },
+  fullScreen: false,
 };
 
 export default Modal;
