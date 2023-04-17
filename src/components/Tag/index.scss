@@ -1,0 +1,16 @@
+.tab_wrap {
+  display: inline-block;
+  height: 20px;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 2px 8px;
+  box-sizing: border-box;
+  background-color: rgba(107, 112, 117, 0.15);
+  color: rgba(46, 50, 56, 1);
+
+  .icon {
+    color: rgba(46, 50, 56, 1);
+    padding-left: 5px;
+    cursor: pointer;
+  }
+}
