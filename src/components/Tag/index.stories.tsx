@@ -18,36 +18,19 @@ export const Default: ComponentStory<typeof Tag> = () => {
 };
 Default.storyName = '基本用法';
 
-// export const MaskClosable: ComponentStory<typeof Tag> = () => {
-//   const [visible, setVisible] = useState(false);
-//   const handleOk = () => {
-//     setVisible(false);
-//   };
-//   const handleCancel = () => {
-//     setVisible(false);
-//   };
-
-//   return (
-//     <>
-//       <Button onClick={() => setVisible(true)}>点击遮罩层可关闭</Button>
-//       <Modal
-//         visible={visible}
-//         title="我是标题"
-//         onOk={handleOk}
-//         onCancel={handleCancel}
-//         maskClosable
-//         setVisible={setVisible}
-//       >
-//         我是模态框内容
-//       </Modal>
-//     </>
-//   );
-// };
-// MaskClosable.storyName = '点击遮罩层可关闭';
-// MaskClosable.parameters = {
-//   docs: {
-//     description: {
-//       story: '修改 maskClosable为true 则可通过点击遮罩层来关闭对话框，需与setVisible搭配使用',
-//     },
-//   },
-// };
+export const Size: ComponentStory<typeof Tag> = () => {
+  return (
+    <>
+      <Tag style={{ marginRight: 10 }}>small tag</Tag>
+      <Tag size="large">large tag</Tag>
+    </>
+  );
+};
+Size.storyName = '尺寸';
+Size.parameters = {
+  docs: {
+    description: {
+      story: '默认定义了两种尺寸：大、小（默认）',
+    },
+  },
+};
