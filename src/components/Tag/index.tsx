@@ -5,6 +5,7 @@ import Icon from '../Icon';
 import './index.scss';
 
 type Size = 'small' | 'large';
+type Shape = 'square' | 'circle';
 interface TagProps {
   /** 标签是否可以关闭 */
   closable?: Boolean;
@@ -13,6 +14,8 @@ interface TagProps {
   /** 样式 */
   style?: CSSProperties;
   /** 标签的尺寸，可选 small、 large */
+  /** 标签形状 */
+  shape?: Shape;
   size?: Size;
   /** 关闭标签时的回调函数 */
   onClose?: (tagChildren: ReactNode, e: MouseEvent) => void;
@@ -27,7 +30,7 @@ interface TagProps {
  * ~~~
  */
 const Tag: FC<TagProps> = (props) => {
-  const { closable, children, size, onClose, ...restProps } = props;
+  const { closable, children, size, shape, onClose, ...restProps } = props;
   console.log(children, 'children');
 
   const [showTag, setShowTag] = useState<Boolean>(true);
@@ -43,6 +46,7 @@ const Tag: FC<TagProps> = (props) => {
 
   const classes = classNames('tag_wrap', {
     [`tag_size_${size}`]: size,
+    [`tag_shape_${shape}`]: shape,
   });
 
   return (
@@ -59,6 +63,7 @@ const Tag: FC<TagProps> = (props) => {
 
 Tag.defaultProps = {
   size: 'small',
+  shape: 'square',
 };
 
 export default Tag;

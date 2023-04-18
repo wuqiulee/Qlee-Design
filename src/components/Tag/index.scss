@@ -20,3 +20,9 @@
 .tag_size_large {
   padding: 4px 8px;
 }
+.tag_shape_square {
+  border-radius: 0;
+}
+.tag_shape_circle {
+  border-radius: 9999px;
+}

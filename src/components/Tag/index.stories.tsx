@@ -34,3 +34,22 @@ Size.parameters = {
     },
   },
 };
+
+export const Shape: ComponentStory<typeof Tag> = () => {
+  return (
+    <>
+      <Tag style={{ marginRight: 10 }}>small tag</Tag>
+      <Tag size="large" shape="circle">
+        large tag
+      </Tag>
+    </>
+  );
+};
+Shape.storyName = '形状';
+Shape.parameters = {
+  docs: {
+    description: {
+      story: '默认定义了两种形状：square（默认）、circle',
+    },
+  },
+};
