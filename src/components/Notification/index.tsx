@@ -1,4 +1,5 @@
 import react, { FC } from 'react';
+import './index.scss';
 
 interface NotificationProps {}
 
