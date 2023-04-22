@@ -38,6 +38,9 @@ const Notification = {
   open(props: NotificationProps) {
     return <NotificationComp {...props} />;
   },
+  info(props: NotificationProps) {
+    return <NotificationComp theme="info" {...props} />;
+  },
 };
 
 export default Notification;
