@@ -41,6 +41,9 @@ const Notification = {
   info(props: NotificationProps) {
     return <NotificationComp theme="info" {...props} />;
   },
+  error(props: NotificationProps) {
+    return <NotificationComp theme="error" {...props} />;
+  },
 };
 
 export default Notification;
