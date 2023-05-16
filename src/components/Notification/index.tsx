@@ -1,4 +1,4 @@
-import react, { FC, ReactNode, useEffect, useRef } from 'react';
+import { FC, ReactNode, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import './index.scss';
 
