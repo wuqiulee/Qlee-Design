@@ -30,7 +30,6 @@ function App() {
         </TabPane>
       </Tabs>
     </div>
-    // <Input defaultValue="default" disabled />
   );
 }
 
