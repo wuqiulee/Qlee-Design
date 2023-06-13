@@ -17,7 +17,6 @@ function App() {
         type="card"
         mode="vertical"
         tabBarExtraContent={<Icon icon="moon" theme="danger" />}
-        // onTabClose={(key) => alert(key)}
       >
         <TabPane tab="tab1" itemKey="1" disabled>
           <div style={{ color: 'red' }}>child1</div>
