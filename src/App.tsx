@@ -5,7 +5,6 @@ import Button from './components/Button';
 import Banner from './components/Banner';
 import { TabPane, Tabs } from './components/Tabs';
 import Icon from './components/Icon';
-import Input from './components/Input';
 
 library.add(faMoon, faRocket);
 
