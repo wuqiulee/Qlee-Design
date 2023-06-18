@@ -1,7 +1,6 @@
 import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMoon, faRocket } from '@fortawesome/free-solid-svg-icons';
-import Banner from './components/Banner';
 import { TabPane, Tabs } from './components/Tabs';
 import Icon from './components/Icon';
 
