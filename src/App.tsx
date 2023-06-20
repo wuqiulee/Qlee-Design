@@ -1,4 +1,3 @@
-import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMoon, faRocket } from '@fortawesome/free-solid-svg-icons';
 import { TabPane, Tabs } from './components/Tabs';
