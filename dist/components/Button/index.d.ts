@@ -1,16 +1,12 @@
-/* eslint-disable react/default-props-match-prop-types */
-import React, {
+import {
   FC,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   CSSProperties,
   ReactNode,
   MouseEvent,
-  KeyboardEvent,
 } from 'react';
-import classnames from 'classnames';
 import './index.scss';
-
 type BtnType = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 type ThemeType = 'light' | 'solid' | 'borderless';
 type SizeType = 'large' | 'default' | 'small';
@@ -37,7 +33,6 @@ export interface ButtonProps {
 type NativeBtnProps = ButtonProps & ButtonHTMLAttributes<HTMLElement>;
 type AnchorBtnProps = ButtonProps & AnchorHTMLAttributes<HTMLElement>;
 type IProps = Partial<NativeBtnProps & AnchorBtnProps>;
-
 /**
  * 页面中最常用的的按钮元素，适合于完成特定的交互
  * ### 如何引入
@@ -46,42 +41,5 @@ type IProps = Partial<NativeBtnProps & AnchorBtnProps>;
  * import { Button } from 'qlee-design';
  * ~~~
  */
-const Button: FC<IProps> = (props) => {
-  const {
-    btnType,
-    className,
-    theme,
-    size,
-    disabled,
-    block,
-    children,
-    style,
-    onClick,
-    ...restProps
-  } = props;
-
-  const classes = classnames('btn_base', className, {
-    [`btn_${btnType}`]: btnType,
-    [`solid_${btnType}`]: theme === 'solid',
-    btn_empty: theme === 'borderless',
-    [`btn_${size}`]: size && size !== 'default',
-    btn_disabled: disabled,
-    btn_block: block,
-  });
-
-  return (
-    <div className={classes} style={style} onClick={onClick} {...restProps}>
-      {children}
-    </div>
-  );
-};
-
-Button.defaultProps = {
-  btnType: 'primary',
-  theme: 'light',
-  size: 'default',
-  disabled: false,
-  block: false,
-};
-
+declare const Button: FC<IProps>;
 export default Button;

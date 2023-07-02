@@ -1,37 +1,51 @@
 {
-  "name": "antd-demo-ts",
+  "name": "qlee-design",
   "version": "0.1.0",
-  "private": true,
+  "description": "React ui components library",
+  "author": "wuqiulee",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "React"
+  ],
+  "homepage": "https://github.com/wuqiulee",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wuqiulee/Qlee-Design"
+  },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/classnames": "^2.3.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
-    "node-sass": "^8.0.0",
     "normalize.css": "^8.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/**/*.scss ./dist/index.css",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -91,10 +105,24 @@
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.4",
     "prop-types": "^15.8.1",
+    "rimraf": "^5.0.1",
     "sass": "^1.60.0",
     "sass-loader": "10.1.1",
+    "node-sass": "^4.13.0",
     "style-loader": "2.0.0",
-    "webpack": "^5.77.0"
+    "webpack": "^5.77.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.4.2",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/classnames": "^2.3.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
   },
   "husky": {
     "hooks": {
