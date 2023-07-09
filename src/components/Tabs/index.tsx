@@ -1,7 +1,6 @@
 import React, { useState, createContext, CSSProperties, ReactNode, Children } from 'react';
 import classnames from 'classnames';
 import TabPane, { TabPaneProps } from './TabPane';
-import './index.scss';
 
 type TabsType = 'line' | 'card' | 'button';
 type ModeType = 'horizontal' | 'vertical';

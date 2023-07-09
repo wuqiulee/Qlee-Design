@@ -42,7 +42,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-ts": "tsc -p tsconfig.build.json",
-    "build-css": "node-sass ./src/**/*.scss ./dist/index.css",
+    "build-css": "node-sass ./src/index.scss ./dist/index.css",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",

@@ -1,4 +1,12 @@
 @import 'normalize.css';
+@import './components/AutoComplete/index.scss';
+@import './components/Banner/index.scss';
+@import './components/Button/index.scss';
+@import './components/Icon/index.scss';
+@import './components/Input/index.scss';
+@import './components/Modal/index.scss';
+@import './components/Tabs/index.scss';
+@import './components/Tag/index.scss';
 
 body {
   margin: 0;

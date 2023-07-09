@@ -9,7 +9,6 @@ import React, {
   KeyboardEvent,
 } from 'react';
 import classnames from 'classnames';
-import './index.scss';
 
 type BtnType = 'primary' | 'secondary' | 'tertiary' | 'warning' | 'danger';
 type ThemeType = 'light' | 'solid' | 'borderless';

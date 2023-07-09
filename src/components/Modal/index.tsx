@@ -2,7 +2,6 @@ import React, { Dispatch, FC, MouseEvent, ReactNode, SetStateAction, useEffect }
 import classNames from 'classnames';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Icon from '../Icon';
-import './index.scss';
 import Button, { ButtonProps } from '../Button';
 
 interface ModalProps {

@@ -1,7 +1,6 @@
 import React, { useContext, useRef, ReactNode, CSSProperties, MouseEvent } from 'react';
 import classnames from 'classnames';
 import { TabsContext } from './index';
-import './index.scss';
 
 export interface TabPaneProps {
   tab: ReactNode;

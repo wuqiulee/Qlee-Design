@@ -13,7 +13,6 @@ import Input, { InputProps } from '../Input';
 import useDebounce from '../../hooks/useDebounce';
 import useClickOutside from '../../hooks/useClickOutside';
 import Icon from '../Icon';
-import './index.scss';
 
 interface DataSourceObject {
   value: string;

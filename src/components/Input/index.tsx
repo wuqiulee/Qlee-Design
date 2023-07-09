@@ -13,7 +13,6 @@ import React, {
 import classNames from 'classnames';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import Icon from '../Icon';
-import './index.scss';
 
 type SizeType = 'default' | 'large' | 'small';
 export interface InputProps

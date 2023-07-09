@@ -2,7 +2,6 @@ import React, { CSSProperties, MouseEvent, FC, ReactNode, useState } from 'react
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames';
 import Icon from '../Icon';
-import './index.scss';
 
 type Size = 'small' | 'large';
 type Shape = 'square' | 'circle';
