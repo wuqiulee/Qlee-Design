@@ -2,7 +2,7 @@
 
 qlee-design，使用 React Hooks 和 typescript 开发
 意在了解 UI 组件库的开发模式，提高自身组件库的开发能力，功能正在逐渐完善中~
-文档地址：https://wuqiulee.github.io/Qlee-Design
+文档地址：https://wuqiulee.github.io/qlee-design
 
 ### 安装
 
